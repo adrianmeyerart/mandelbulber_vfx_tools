@@ -11,6 +11,15 @@ All the code is developed during my studies at Animationsinstitut at Filmakademi
 
 <br>
 
+### Code State | Bugs | Compatibility
+**Mandelbulber VFX Tools** is in a work in progress, prototype stage and for experimental use.
+It may contain bugs and the code is not fully cleaned up. Feel free to customize and enhance to your needs.
+
+*Compatible with **Houdini 17.+ | Tested with 17.5.294***
+*Compatible with **Mandelbulber 2.18+ | Tested with 2.18-1***
+
+<br>
+
 ## Installation
 * Clone or copy repository. Add path to repository into **HOUDINI_PATH** environment variable (e.g. in *houdini.env* file)
     ```
@@ -28,15 +37,6 @@ All the code is developed during my studies at Animationsinstitut at Filmakademi
 * Click on *Import Animation* Shelf Tool and select .fract File
 * Edit Keyframes in Houdini Animation Editor Pane
 * Export back to Mandelbulber .fract File with *Export Animation* Shelf Tool
-
-<br>
-
-### Code State | Bugs | Compatibility
-**Mandelbulber VFX Tools** is in a work in progress, prototype stage and for experimental use.
-It may contain bugs and the code is not fully cleaned up. Feel free to customize and enhance to your needs.
-
-*Compatible with **Houdini 17.+ | Tested with 17.5.294***
-*Compatible with **Mandelbulber 2.18+ | Tested with 2.18-1***
 
 <br>
 
