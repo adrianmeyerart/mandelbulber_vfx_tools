@@ -3,7 +3,7 @@ import sys
 from collections import OrderedDict
 
 # info
-__author__ = "Adrian Meyer @Animationsinstitut Filmakademie Baden-Württemberg"
+__author__ = "Adrian Meyer @Animationsinstitut Filmakademie Baden-Wuerttemberg"
 __copyright__ = "2019 All rights reserved. See LICENSE for more details."
 __status__ = "Prototype"
 
@@ -162,6 +162,7 @@ def import_animation():
     # create null object and extract parms
     anim_null = hou.node("/obj/").createNode("null", "mdb_anim_null")
     anim_null.setSelected(1, 1)
+    anim_null.setDisplayFlag(0)
 
     if mode == "flight":
         anim_parms = flight_anim_parms
@@ -206,6 +207,7 @@ def import_animation():
             parm_folder.addParmTemplate(hou.FloatParmTemplate(name, name, size))
         i += 1
 
+    parm_folder.addParmTemplate(hou.FloatParmTemplate("display_size", "Display Size", 1))
     parm_group.append(parm_folder)
     anim_null.setParmTemplateGroup(parm_group)
 
@@ -221,10 +223,11 @@ def import_animation():
 
     parm_pattern = []
     for parm in parms:
-        parm.setAutoscope(1)
-        parm.setScope(1)
-        parm.setKeyframe(hou.Keyframe(0))
-        parm_pattern.append(parm.path())
+        if parm.name() != "display_size":
+            parm.setAutoscope(1)
+            parm.setScope(1)
+            parm.setKeyframe(hou.Keyframe(0))
+            parm_pattern.append(parm.path())
     parm_pattern = " ".join(parm_pattern)
     # print "\nParm Pattern: " + parm_pattern
 
@@ -232,6 +235,37 @@ def import_animation():
 
     hou.hscript("chread -f {} {} -n {} {}".format(anim_start, anim_end, parm_pattern, chan_filepath))
     print "\nAnimation Data read back from .chan File and applied to Parameters on Animation Null."
+
+    # create helper nulls
+
+    display_size_parm = anim_null.parm("display_size")
+    display_size_parm.set(0.025)
+
+    # cam null
+    cam_null = hou.node("/obj/").createNode("null", "cam_null")
+    cam_null.move([-2, -2])
+    cam_null_col = (1, 0, 0)
+    cam_null_col_parm = cam_null.parmTuple("dcolor")
+    cam_null_col_parm.set(cam_null_col)
+    cam_null.setColor(hou.Color(cam_null_col))
+    cam_null_scale = cam_null.parm("geoscale")
+    cam_null_scale.setExpression('ch("../mdb_anim_null/display_size")')
+    cam_null.parm("tx").setExpression('ch("../mdb_anim_null/_0_main_camera_x")')
+    cam_null.parm("ty").setExpression('ch("../mdb_anim_null/_0_main_camera_y")')
+    cam_null.parm("tz").setExpression('ch("../mdb_anim_null/_0_main_camera_z")')
+
+    # target null
+    target_null = hou.node("/obj/").createNode("null", "target_null")
+    target_null.move([2, -2])
+    target_null_col = (0, 0, 1)
+    target_null_col_parm = target_null.parmTuple("dcolor")
+    target_null_col_parm.set(target_null_col)
+    target_null.setColor(hou.Color(target_null_col))
+    target_null_scale = target_null.parm("geoscale")
+    target_null_scale.setExpression('ch("../mdb_anim_null/display_size")')
+    target_null.parm("tx").setExpression('ch("../mdb_anim_null/_1_main_target_x")')
+    target_null.parm("ty").setExpression('ch("../mdb_anim_null/_1_main_target_y")')
+    target_null.parm("tz").setExpression('ch("../mdb_anim_null/_1_main_target_z")')
 
     ### save hipFile
     hip_filepath = fract_filepath.replace(".fract", ".hip")

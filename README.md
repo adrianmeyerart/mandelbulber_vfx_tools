@@ -31,6 +31,15 @@ It may contain bugs and the code is not fully cleaned up. Feel free to customize
 
 <br>
 
+## How to Use
+#### Houdini Animation Editing
+* Open Houdini / Open Animation Editor / Open Python Shell / Open *HOU Mandelbulber Shelf*
+* Click on *Import Animation* Shelf Tool and select .fract File.
+* Edit Keyframes in Houdini Animation Editor Pane
+* Export back to Mandelbulber .fract File with *Export Animation* Shelf Tool
+
+<br>
+
 ## Resources
 * [Mandelbulber GitHub](https://github.com/buddhi1980/mandelbulber2)
 * [Mandelbulber Website](https://www.mandelbulber.com/)
