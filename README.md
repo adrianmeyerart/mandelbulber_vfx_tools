@@ -1,5 +1,6 @@
 Mandelbulber VFX Tools
 ==========================
+![Mandelbulber VFX Tools banner image](img/hou_screenshot.jpg)
 *Tools and Scripts to integrate Mandelbulber Fractal Software into VFX Pipelines*
 
 <br>
