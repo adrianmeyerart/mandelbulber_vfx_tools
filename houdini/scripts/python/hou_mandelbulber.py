@@ -1,11 +1,18 @@
 import hou
 import sys
+import os
 from collections import OrderedDict
 
 # info
 __author__ = "Adrian Meyer @Animationsinstitut Filmakademie Baden-Wuerttemberg"
 __copyright__ = "2019 All rights reserved. See LICENSE for more details."
 __status__ = "Prototype"
+
+def create_render_dir():
+    input = hou.ui.readInput("Path to Create", buttons=('OK',))
+    path = input[1]
+    os.mkdir(path)
+    print "{}\nDirectory created.".format(path)
 
 
 folder_name = "Mandelbulber Animation"
