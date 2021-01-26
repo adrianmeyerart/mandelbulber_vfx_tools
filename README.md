@@ -16,8 +16,8 @@ All the code is developed during my studies at Animationsinstitut at Filmakademi
 **Mandelbulber VFX Tools** is in a work in progress, prototype stage and for experimental use.
 It may contain bugs and the code is not fully cleaned up. Feel free to customize and enhance to your needs.
 
-*Compatible with **Houdini 17.+ | Tested with 17.5.425***
-*Compatible with **Nuke 12.+ | Tested with 12.0v3***
+*Compatible with **Houdini 17.+ | Tested with 17.5.425***<br/>
+*Compatible with **Nuke 12.+ | Tested with 12.0v3***<br/>
 *Compatible with **Mandelbulber 2.22+ | Tested with 2.22***
 
 <br>
